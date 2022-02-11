@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int stlen(char* s){
+    int i;
+    for(i = 0; s[i] != '\0'; ++i);
+    return i;
+}
+void add (char* a, char* b){
+    int la=stlen(a), lb=stlen(b), lmax=la>lb?la:lb, lmin=la+lb-lmax;
+    char sum[1010];
+        int d1, d2, c=0, s;
+    for(int i=1; i<=lmax; i++){
+        if(i<=lmin){
+            d1 = a[la-i]-'0';
+            d2 = b[lb-i]-'0';
+        }
+        else{
+            if(la>lb){
+                d2=0;
+                d1=a[la-i]-'0';
+            }
+            else{
+                d1=0;
+                d2=b[lb-i]-'0';
+            }
+        }
+        s=(d1+d2+c)%10;
+        c=(d1+d2+c)/10;
+        sum[lmax+1-i]=s+'0';
+    }
+    sum[0]=c+'0';
+    if(sum[0]=='0'){
+        printf("%s\n", sum+1);
+    }
+    else{
+        printf("%s\n", sum);
+    }
+}
+
+int main(){
+    char a[1000]; char b[1000];
+    scanf("%s %s", a, b);
+    add(a, b);
+}
