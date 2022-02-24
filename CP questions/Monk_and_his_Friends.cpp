@@ -19,25 +19,27 @@ int main()
         // current students = N, new students = M
         int M, N;
         cin >> N >> M;
-        vector<long long> currCandies;
+        // vector<long long> currCandies;
+        set<long long> currCandies;
         long long temp;
         for (int i = 0; i < N; i++)
         {
             cin >> temp;
-            currCandies.push_back(temp);
+            currCandies.insert(temp);
         }
         for (int i = 0; i < M; i++)
         {
-        sort(currCandies.begin(), currCandies.end());
+        // sort(currCandies.begin(), currCandies.end());
             cin >> temp;
-            bool it = binary_search(currCandies.begin(), currCandies.end(), temp);
-            if (it){
+            // bool it = binary_search(currCandies.begin(), currCandies.end(), temp);
+            auto it = currCandies.find(temp);
+            if (it != currCandies.end()){
                 cout << "YES" << endl;
             }
             else{
                 cout << "NO" << endl;
             }
-            currCandies.push_back(temp);
+            currCandies.insert(temp);
             
         }
     }
